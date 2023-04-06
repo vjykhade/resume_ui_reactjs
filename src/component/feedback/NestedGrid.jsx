@@ -30,7 +30,7 @@ function FormRow({ technologyList, setTechnologyList, isSoftskill }) {
                 <OutlinedInput
                   id="outlined-adornment-weight"
                   endAdornment={
-                    <InputAdornment position="end">/4</InputAdornment>
+                    <InputAdornment position="end">/10</InputAdornment>
                   }
                   onChange={(e) => {
                     if (isSoftskill) handleRatingChange(e, skill);

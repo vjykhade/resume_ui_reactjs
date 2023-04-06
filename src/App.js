@@ -1,9 +1,9 @@
 import './App.css';
-// import Resume from './component/Resume/Resume';
-// import Login from './component/Login';
-// import SignUp from './component/SignUp';
-import { BrowserRouter } from 'react-router-dom';
-// import Dashboard from './component/dashboard/Drawer';
+import Resume from './component/Resume/Resume';
+import Login from './component/Login';
+import SignUp from './component/SignUp';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Dashboard from './component/dashboard/Drawer';
 import AppRoutes from './AppRoutes';
 import MiniDrawer from './component/dashboard/Drawer';
 import { useState } from 'react';
@@ -18,9 +18,9 @@ function App() {
   }
   return (
     <BrowserRouter>
-  <div>
+    <div>
    {
-        false ? (<>
+        loginStatus ? (<>
           <MiniDrawer />
         </>) : (<AppRoutes loginStatus = {loginStatus} handleLoginStatus = {handleLoginStatus}/>)
       }

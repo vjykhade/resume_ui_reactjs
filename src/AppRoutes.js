@@ -4,18 +4,19 @@ import Feedback from "./component/feedback/Feedback"
 import Login from "./component/Login"
 import Resume from "./component/Resume/Resume"
 import SignUp from "./component/SignUp"
-import { useState } from 'react';
+import { useState } from "react"
 
 const AppRoutes = (props) => {
+
     const [loginStatus, setLoginStatus] = useState(props.loginStatus);
     const handleLogin = () =>{
         setLoginStatus(true)
         props.handleLoginStatus();
     }
     const testRoutes = [
-        { path: '/', element: <Login /> },
-        { path: '/login', element: <Login loginStatus={loginStatus} handleLogin={handleLogin} /> },
-        { path: '/dashboard', element: <Dashboard loginStatus={loginStatus} handleLogin={handleLogin}/> },
+        { path: '/', element: <Login loginStatus={loginStatus} handleLogin={handleLogin}/> },
+        { path: '/login', element: <Login /> },
+        { path: '/dashboard', element: <Dashboard /> },
         { path: '/feedback', element: <Feedback /> },
         { path: '/signup', element: <SignUp /> },
         { path: '/resume', element: <Resume /> }

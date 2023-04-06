@@ -13,11 +13,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {  useNavigate } from "react-router-dom";
 import axios from 'axios';
 
-const API_URL = '/account';
+const API_URL = '/thor/account';
 
 const axiosInstance = axios.create({
     baseURL: API_URL
   });
+
 function checkForSpecialCharNumber(data) {
     var char = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~\s [a-zA-Z]*$]/;
     var number = "[0-9]";
@@ -38,6 +39,7 @@ const schema = yup.object({
     firstName: yup
         .string()
         .required("First name is required")
+        // .pattern="^[a-zA-Z0-9\s]+$"
         .test(
             "Check for special",
             "First name can only have alphabets",
@@ -56,7 +58,7 @@ const schema = yup.object({
         .email("Please enter a valid email address")
         .required("Company email is required"),
 
-    
+
 
     password: yup.string().required("Password is required"),
     confirmPassword: yup
@@ -86,34 +88,32 @@ function SignUp(formData) {
         mode: "onChange",
     });
 
-    let navigate = useNavigate();
-
     const submit = (data) => {
-    
-    const singupdata = {
-    fullName  : data.firstName+" "+data.lastName,
-    email : data.email,
-    password : data.password,
-    role : "USER"
+        console.log("Coming to submit data")
+        const singupdata = {
+            fullName  : data.firstName+" "+data.lastName,
+            email : data.email,
+            password : data.password,
+            role : "USER"
+            }
+        
+            axiosInstance.post('/register', singupdata)
+            .then(response => {
+            console.log(response.data);
+            if(response?.status===200)
+           {
+            alert(response.data.message)
+            navigate('/'); 
+           }
+            else
+             alert(response.data.message)
+            })
+            .catch(error => {
+             console.log(error);
+            });
     }
 
-    axiosInstance.post('/register', singupdata)
-    .then(response => {
-    console.log(response.data);
-    if(response?.status===200)
-   {
-    alert(response.data.message)
-    navigate('/'); 
-   }
-    else
-     alert(response.data.message)
-    })
-    .catch(error => {
-     console.log(error);
-    });
-          
-    }
-    
+    let navigate = useNavigate();
     const handleOpenLogin = () => {
         let path = `/`;
         navigate(path)
@@ -135,7 +135,10 @@ function SignUp(formData) {
 
 
     return (
-        <Grid container>
+        <Grid 
+        tabIndex="0" container width={"80%"}
+        className={styles.mainpaperContainer}
+        >
 
             <Grid item xs={12} sm={12} md={6} lg={6}>
                 <Paper square className={styles.paperContainer}>
@@ -144,7 +147,7 @@ function SignUp(formData) {
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6}>
                 <Box className={styles.box}>
-                    <h3 > Create Your Accout</h3>
+                    <h3 > Create Your Account</h3>
                     <FormControl sx={{ py: 2 }}>
                         <Grid container rowSpacing={2}>
                             <Grid item xs={12} sm={12} md={12} lg={9}>
@@ -343,18 +346,23 @@ function SignUp(formData) {
 
                             <Grid item xs={12} sm={12} md={12} lg={9} sx={{ display: 'flex', justifyContent: 'space-Between' }}>
 
-                                <Typography variant="subtitle1"  component="div" sx={{ py: 1, cursor: 'pointer' }}>
+                                <Typography variant="subtitle1" component="div" sx={{ py: 1, cursor: 'pointer' }}>
                                     Already have an account?
                                     {/* <Link> */}
-                                    <Typography variant="h7"  onClick={handleOpenLogin}>&nbsp; Login</Typography>
+                                    <Typography variant="h7" onClick={handleOpenLogin}>&nbsp; Login</Typography>
                                     {/* </Link> */}
                                 </Typography>
                                 <Button
-                                    className={styles.button}
+                                    // className={styles.button}
+                                    // variant="contained"
+                                    // component="span"
+                                    // onClick={() => handleSubmit(submit)()}
+                                    id="signUPButton"
+                                    sx={{ width: "100px" }}
                                     variant="contained"
-                                    component="span"
-                                    onClick={()=>{handleSubmit(submit)()}}
-                                    type="submit"
+                                    fullWidth
+                                    onClick={handleSubmit(submit)}
+                                    //type="submit"
                                 >
                                     Save
                                 </Button>

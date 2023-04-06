@@ -1,28 +1,27 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box, Button, FormControl, Grid, Link, Paper, Stack, TextField, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import React from 'react'
 import { useForm } from 'react-hook-form';
 import styles from "../styles/login.module.css"
 import * as yup from "yup";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const API_URL = '/';
+const API_URL = '/thor';
 
 const axiosInstance = axios.create({
     baseURL: API_URL
   });
 
 function Login(props) {
-    
     let navigate = useNavigate();
-        const routerChange = (data) => {
+    const routerChange = (data) => {
         const loginData = {
             email : data.email,
             password : data.password
         }
         console.log("Login data: ", data)
-        axiosInstance.post('login', loginData)
+        axiosInstance.post('/login', loginData)
         .then(response => {
         console.log(response.data);
         if(response?.status===200)
@@ -31,13 +30,14 @@ function Login(props) {
         localStorage.setItem("token",response.data.token)
             let path = `/dashboard`;
             navigate(path)
-            props.handleLogin()
+            props.handleLogin();
        }
-        else
-         alert("Invaid Email Id or Password")
+        else{
+            alert("Invaid Email Id or Password")
+        }
+        
         })
         .catch(error => {
-            alert("Invaid Email Id or Password")
          console.log(error);
         });
     }
@@ -153,8 +153,6 @@ function Login(props) {
                                     sx={{ width: "100px" }}
                                     variant="contained"
                                     fullWidth
-                                    //   disabled={isDisable}
-                                    //   onClick={handleSubmit(submit)}
                                     onClick={() => handleSubmit(routerChange)()}
                                 >
                                     Login

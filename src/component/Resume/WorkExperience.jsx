@@ -1,97 +1,43 @@
-import { Button, Grid, TextField } from '@mui/material'
+import { Button, Grid} from '@mui/material'
 import React, { useState } from 'react'
-import DatePicker from './DatePicker';
-import Projects from './Projects'
+import { WorkExperienceTemplate } from './WorkExperienceTemplate';
 
 function WorkExperience() {
     const [companies, setCompanies] = useState([WorkExperienceTemplate()]);
-
     const handleOpenCompanies = () => {
         setCompanies([...companies, WorkExperienceTemplate()])
     }
+
+    const RemoveCompanies = (ele) => {
+        if (window.confirm(`Are you sure you want to remove ${companies}?`)) {
+            const newItems = [...companies];
+            newItems.splice(ele, 1);
+            setCompanies(newItems);
+            }
+    
+    };
 
     return (
         <>
             <Grid container>
                 <Grid item lg={12} sx={12}>
-                    <h2 style={{ border: "0.1px solid #239ce2", backgroundColor: '#239ce2', textAlign: 'center', color: '#fff' }}>Work Experience</h2>
+                    <h2 style={{ border: "0.1px solid #239ce2", backgroundColor: 'rgb(25,118,210)', textAlign: 'center', color: '#fff' }}>Work Experience</h2>
                 </Grid>
             </Grid>
+            
             {companies.map(company => {
-                return company;
+                return <>
+                <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end', gap: "15px" ,  marginRight: "30px" }}>
+                <button style={{width: "50px", height: "50px", backgroundColor: "red", color: "white", border: "none",fontSize:"25px", fontWeight:"bold"}}  onClick={RemoveCompanies}>X</button>
+             </Grid>  {company}
+                </>;
             })}
-            <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end', padding: '10px' }}>
-                <Button variant="contained" onClick={handleOpenCompanies}>Add Company</Button>
 
-            </Grid>
-            <Projects />
+            <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end', gap: "15px" ,  marginRight: "30px" }}>
+               <Button variant="contained" onClick={handleOpenCompanies}>Add Company</Button>
+            </Grid>  
         </>
     )
 }
 
 export default WorkExperience
-
-
-const WorkExperienceTemplate = () => {
-
-    return <>
-        <Grid container spacing={2} >
-            <Grid item xs={2} style={{ display: 'flex', alignItems: 'start' }}>
-                <h3>Company:</h3>
-            </Grid>
-            <Grid item xs={10} >
-                <TextField
-                    style={{ width: '100%' }}
-                    Company
-                    id="outlined-required"
-                    label="Company"
-                    placeholder="Enter your Company Name"
-                />
-            </Grid>
-
-        </Grid>
-        <Grid container spacing={2}>
-            <Grid item xs={2} style={{ display: 'flex', alignItems: 'start' }}>
-                <h3>From:</h3>
-            </Grid>
-            <Grid item xs={5} >
-                <TextField
-                    style={{ width: '100%' }}
-                    periodFrom
-                    id="outlined-required"
-                    label="Period From"
-                    placeholder="Enter your Working Period in last  Company "
-                />
-            </Grid>
-            <Grid item xs={5} >
-                <TextField
-                    style={{ width: '100%' }}
-                    periodFrom
-                    id="outlined-required"
-                    label="Period To"
-                    placeholder="Enter your Working Period To "
-                />
-            </Grid>
-        </Grid>
-        <Grid container spacing={2}>
-            <Grid item xs={2} style={{ display: 'flex', alignItems: 'start' }}>
-                <h3>Designation:</h3>
-            </Grid>
-            <Grid item xs={10} >
-                <TextField
-                    style={{ width: '100%' }}
-                    Company
-                    id="outlined-required"
-                    label="Company"
-                    placeholder="Enter your Designation"
-                />
-            </Grid>
-
-
-        </Grid>
-
-
-
-
-    </>
-}

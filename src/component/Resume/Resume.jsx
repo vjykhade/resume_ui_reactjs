@@ -1,6 +1,7 @@
 import { Button, FormControl, Grid, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { display } from "@mui/system";
 import React, { useState } from "react";
-import resume from "../../style/resume.css"
+import resume from "../../styles/resume.css"
 import Education from "./Education";
 import SkillSets from "./SkillSets";
 import WorkExperience from "./WorkExperience";
@@ -36,21 +37,28 @@ function Resume() {
   return (
     <>
       <div className="container">
+        <form>
         <div className="main">
-          <h3>Resume</h3>
-          <div className="detail">
+          <div >
+          <h1>Resume</h1>
+          <Button style={{  width : "20%" ,height:"40px", fontSize:"15px" ,fontWeight: "bolder",  left:"78%" , margin:"-100px 0px 0px 0px"}}  variant="contained" >Resume Preview</Button>
+          </div>
+        
+          <div className="detail subContainer">
             <div className="row">
               <TextField
                 Name
                 id="outlined-required"
                 label="Name"
                 placeholder="Enter your Name"
+                required
               />
               <TextField
                 Email
                 id="outlined-required"
                 label="Email"
                 placeholder="Enter your email"
+                required
               />
             </div>
 
@@ -60,12 +68,14 @@ function Resume() {
                 id="outlined-required"
                 label="Title"
                 placeholder="Enter your Designation"
+                required
               />
               <TextField
                 Enter Phone
                 id="outlined-required"
                 label="Enter Phone"
                 placeholder="Enter Your phone Number"
+                required
               />
             </div>
             <div className="row" style={{ textAlign: 'left' }}>
@@ -74,13 +84,9 @@ function Resume() {
                 id="outlined-required"
                 label="Address"
                 placeholder="Enter your Address"
+                required
               />
-              {/* <TextField
-                gender
-                id="outlined-required"
-                label="gender"
-                placeholder="Enter your gender"
-              /> */}
+             
               <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">Gender</InputLabel>
 
@@ -89,6 +95,7 @@ function Resume() {
                   value={gender}
                   label="Gender"
                   onChange={handleChangeGender}
+                  required
                 >
                   <MenuItem value={10}>Male</MenuItem>
                   <MenuItem value={20}>Female</MenuItem>
@@ -108,24 +115,20 @@ function Resume() {
                   value={married}
                   label="MaritalStatus"
                   onChange={handleChangeStatus}
+                  required
                 >
                   <MenuItem value={10}>Married</MenuItem>
                   <MenuItem value={20}>Unmarried</MenuItem>
                   <MenuItem value={30}>Divorce</MenuItem>
                 </Select>
               </FormControl>
-              {/* <TextField 
-          Marital Status
-          id="outlined-required"
-          label="Marital Status"
-          placeholder="Enter your Marital Status"
-        />  */}
+      
             </div>
           </div>
           <div>
-            <h2 style={{ border: "0.1px solid #239ce2", backgroundColor: '#239ce2', textAlign: 'center', color: '#fff' }}>Professional Summary</h2>
+            <h2 style={{ border: "0.1px solid #239ce2", backgroundColor: 'rgb(25,118,210)', textAlign: 'center', color: '#fff' }}>Professional Summary</h2>
           </div>
-          <div className="detail">
+          <div className="detail subContainer">
             {Array.isArray(summaryList) && summaryList.length ? <ul style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>{summaryList.map((ele, index) => <li>{ele.val}<Button onClick={() => removeItem(ele)}>x</Button></li>)} </ul> : " "}
             <div className="row">
               <TextField
@@ -135,16 +138,19 @@ function Resume() {
                 label="Summary"
                 placeholder="Enter your summary"
                 onChange={(e) => setSummary(e.target.value)}
+                required
               />
               <Button onClick={handleSummary} variant="contained">Add</Button>
             </div>
           </div>
-          {/* <Skillset/> */}
+        
           <SkillSets />
        
           <Education />
           <WorkExperience />
+          <Button style={{  width : "25%" ,padding: "10px", fontSize:"15px" ,fontWeight: "bolder",  left:"38%" , margin:"25px 0px 25px 0px"}}  variant="contained" >Submit Data</Button>
         </div>
+        </form>
       </div>
     </>
   )

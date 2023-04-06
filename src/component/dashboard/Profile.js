@@ -1,41 +1,15 @@
 import { Logout, PersonAdd, Settings } from '@mui/icons-material';
 import { Avatar, Box, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip } from '@mui/material'
 import React from 'react'
-import axios from 'axios';
-import {  useNavigate } from "react-router-dom";
-
-const API_URL = '/';
-const token = localStorage.getItem("token")
-
-const axiosInstance = axios.create({
-  baseURL: API_URL,
-  headers: {
-    'Authorization': `Bearer ${token}`,
-    'Content-Type': 'application/json'
-  }
-});
 
 function Profile() {
-    let navigate = useNavigate();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {
-        axiosInstance.post('logout')
-        .then(response => {
-          console.log(response.data)
-          if(response?.status===200)
-          {
-           alert(response.data.message)
-           localStorage.removeItem("token")
-           navigate('/'); 
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
+        setAnchorEl(null);
     };
     return (
         <React.Fragment>
