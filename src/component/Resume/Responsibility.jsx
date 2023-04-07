@@ -42,6 +42,7 @@ function Responsibility() {
                         id="outlined-required"
                         label="Project Responsibilities"
                         placeholder="Enter your project responsibilities "
+                        name='proResponsibilities'
                         onChange={(e) => setResponsibility(e.target.value)}
                         required
                     />

@@ -6,9 +6,7 @@ import { border } from '@mui/system';
 
 export const WorkExperienceTemplate = () => {
 
-    const handleCompany = (event) => {
-        console.log(event.target.value)
-    }
+  
     return <>
     <div className='subContainer' style={{marginBottom: "20px"}}>
         <Grid container spacing={2} >
@@ -21,6 +19,7 @@ export const WorkExperienceTemplate = () => {
                     Company
                     id="outlined-required"
                     label="Company"
+                    name='companyName'
                     placeholder="Enter your Company Name"
                     required
                 />
@@ -37,6 +36,7 @@ export const WorkExperienceTemplate = () => {
                     Designation
                     id="outlined-required"
                     label="Designation"
+                    name='designation'
                     placeholder="Enter your Designation"
                     required
                 />
@@ -47,6 +47,7 @@ export const WorkExperienceTemplate = () => {
                     periodFrom
                     id="outlined-required"
                     label="Start"
+                    name='startDate'
                     placeholder="Enter your Working Period in last  Company "
                     required
                 />
@@ -57,6 +58,7 @@ export const WorkExperienceTemplate = () => {
                     periodFrom
                     id="outlined-required"
                     label="End"
+                    name='endDate'
                     placeholder="Enter your Working Period To "
                     required
                 />

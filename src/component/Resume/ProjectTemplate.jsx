@@ -4,11 +4,8 @@ import Responsibility from './Responsibility';
 
 
 export const ProjectTemplate = () => {
-    const checkprojectName = (event) =>{
-        console.log(event.target.value)
-    }
 
-    return <form id='myForm'>
+    return <>
         <Grid container spacing={2}  className='subprojectcls' >
 
 
@@ -23,7 +20,7 @@ export const ProjectTemplate = () => {
                     label="Project Name"
                     placeholder="Enter Your Project Name"
                     required
-                    onChange={checkprojectName}
+                    name='projectName'
                 />
             </Grid>
             <Grid item xs={4} >
@@ -34,6 +31,7 @@ export const ProjectTemplate = () => {
                     label="Project Technology"
                     placeholder="Enter your Project Technology"
                     required
+                    name='proTech'
                 />
             </Grid>
             <Grid item xs={4} style={{ display: 'flex' }} >
@@ -48,6 +46,7 @@ export const ProjectTemplate = () => {
                     label="Project Description"
                     placeholder="Enter your project description"
                     required
+                    name='description'
                 />
             </Grid>
 
@@ -57,6 +56,6 @@ export const ProjectTemplate = () => {
             <Responsibility />
         
         </Grid>
-    </form>
+    </>
 
 }

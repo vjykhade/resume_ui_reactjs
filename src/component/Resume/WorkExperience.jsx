@@ -5,9 +5,8 @@ import { WorkExperienceTemplate } from './WorkExperienceTemplate';
 function WorkExperience() {
     const [companies, setCompanies] = useState([WorkExperienceTemplate()]);
     const handleOpenCompanies = () => {
-        setCompanies([...companies, WorkExperienceTemplate()])
+        setCompanies([...companies,  WorkExperienceTemplate()])
     }
-
     const RemoveCompanies = (ele) => {
         if (window.confirm(`Are you sure you want to remove ${companies}?`)) {
             const newItems = [...companies];
@@ -26,12 +25,11 @@ function WorkExperience() {
             </Grid>
             
             {companies.map(company => {
-            //     return <>
-            //     <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end', gap: "15px" ,  marginRight: "30px" }}>
-            //     <button style={{width: "50px", height: "50px", backgroundColor: "red", color: "white", border: "none",fontSize:"25px", fontWeight:"bold"}}  onClick={RemoveCompanies}>X</button>
-            //  </Grid>  {company}
-            //     </>;
-            return company;
+                return <>
+                <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end', gap: "15px" ,  marginRight: "30px" }}>
+                <button style={{width: "30px", height: "30px", backgroundColor: "red", color: "white",cursor: "pointer", borderRadius: "5px",border: "none",fontSize:"25px", fontWeight:"bold"}}  onClick={RemoveCompanies}>X</button>
+             </Grid>{company}
+                </>;
             })}
 
             <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end', gap: "15px" ,  marginRight: "30px" }}>

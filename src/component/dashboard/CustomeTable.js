@@ -49,14 +49,6 @@ function createData(name, email, designation, resumeid) {
   return { name, email, designation, resumeid};
 }
 
-const rows = [
-  createData('Frozen yoghurt', "abc@gmail.com", 6.0, "View", "Delete"),
-  createData('Ice cream sandwich', "abc@gmail.com", 237, "View", "Delete"),
-  createData('Eclair', "abc@gmail.com", 16.0, "View", "Delete"),
-  createData('Cupcake', "abc@gmail.com", 3.7, "View", "Delete"),
-  createData('Gingerbread', "abc@gmail.com", 16.0, "View", "Delete"),
-];
-
 export default function CustomizedTables() {
 
   const [data, setData] = useState([]);

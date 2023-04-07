@@ -9,6 +9,7 @@ function Projects() {
   
     const handleOpenContainer = () => {
         setProjects([...projects, ProjectTemplate()])
+        console.log("projects"+projects)
     }
     const RemoveProject = (ele) => {
       if (window.confirm(`Are you sure you want to remove ${projects}?`)) {
@@ -24,7 +25,7 @@ function Projects() {
             {projects.map(project => {
                 return <> 
                 <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end', gap: "15px" ,  marginRight: "5px" }}>
-                <button style={{width: "50px", height: "50px", backgroundColor: "red", color: "white", border: "none",fontSize:"25px", fontWeight:"bold"}} onClick={RemoveProject}>X</button>
+                <button style={{width: "30px", height: "30px", backgroundColor: "red", color: "white",cursor: "pointer", borderRadius: "5px",border: "none",fontSize:"25px", fontWeight:"bold"}}  onClick={RemoveProject}>X</button>
                 </Grid>
              {project} 
              </>
