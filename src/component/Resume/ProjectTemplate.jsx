@@ -4,6 +4,9 @@ import Responsibility from './Responsibility';
 
 
 export const ProjectTemplate = () => {
+    const checkprojectName = (event) =>{
+        console.log(event.target.value)
+    }
 
     return <form id='myForm'>
         <Grid container spacing={2}  className='subprojectcls' >
@@ -20,6 +23,7 @@ export const ProjectTemplate = () => {
                     label="Project Name"
                     placeholder="Enter Your Project Name"
                     required
+                    onChange={checkprojectName}
                 />
             </Grid>
             <Grid item xs={4} >

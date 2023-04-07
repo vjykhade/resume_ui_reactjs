@@ -7,6 +7,8 @@ import Dashboard from './component/dashboard/Drawer';
 import AppRoutes from './AppRoutes';
 import MiniDrawer from './component/dashboard/Drawer';
 import { useState } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -18,6 +20,7 @@ function App() {
   }
   return (
     <BrowserRouter>
+    <ToastContainer position='top-center' />
     <div>
    {
         loginStatus ? (<>

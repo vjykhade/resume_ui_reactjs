@@ -24,7 +24,9 @@ function Resume() {
     setGender(event.target.value);
   }
 
-
+  const checkName = (event) => {
+    console.log(event.target.value)
+  }
   const removeItem = (ele) => {
     if (window.confirm(`Are you sure you want to remove ${summaryList}?`)) {
       console.log("first", ele)
@@ -52,6 +54,7 @@ function Resume() {
                 label="Name"
                 placeholder="Enter your Name"
                 required
+                onChange={checkName}
               />
               <TextField
                 Email

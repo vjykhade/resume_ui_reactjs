@@ -11,13 +11,9 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {  useNavigate } from "react-router-dom";
-import axios from 'axios';
+import { signUp } from "../services/resumemaker-services";
+import { toast } from 'react-toastify';
 
-const API_URL = '/thor/account';
-
-const axiosInstance = axios.create({
-    baseURL: API_URL
-  });
 
 function checkForSpecialCharNumber(data) {
     var char = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~\s [a-zA-Z]*$]/;
@@ -96,21 +92,22 @@ function SignUp(formData) {
             password : data.password,
             role : "USER"
             }
-        
-            axiosInstance.post('/register', singupdata)
-            .then(response => {
-            console.log(response.data);
-            if(response?.status===200)
+    
+        signUp(singupdata).then((res)=>{
+            console.log(res);
+            if(res.code==200)
            {
-            alert(response.data.message)
+            toast.success(res.message)
             navigate('/'); 
            }
-            else
-             alert(response.data.message)
-            })
-            .catch(error => {
+            else{
+             toast.error(res.message)
+            }
+        })
+             .catch(error => {
              console.log(error);
             });
+     
     }
 
     let navigate = useNavigate();

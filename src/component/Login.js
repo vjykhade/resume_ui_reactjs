@@ -5,13 +5,8 @@ import { useForm } from 'react-hook-form';
 import styles from "../styles/login.module.css"
 import * as yup from "yup";
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-
-const API_URL = '/thor';
-
-const axiosInstance = axios.create({
-    baseURL: API_URL
-  });
+import { toast } from 'react-toastify';
+import { axiosMethod } from '../services/helper';
 
 function Login(props) {
     let navigate = useNavigate();
@@ -21,7 +16,7 @@ function Login(props) {
             password : data.password
         }
         console.log("Login data: ", data)
-        axiosInstance.post('/login', loginData)
+        axiosMethod.post('/thor/login', loginData)
         .then(response => {
         console.log(response.data);
         if(response?.status===200)
@@ -33,7 +28,7 @@ function Login(props) {
             props.handleLogin();
        }
         else{
-            alert("Invaid Email Id or Password")
+            toast.error("Invaid Email Id or Password");
         }
         
         })

@@ -7,23 +7,22 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import axios from 'axios';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link }  from "react-router-dom"
 import "../../styles/resume.css"
-
-const API_URL = '/thor/resume';
+import PreviewRoundedIcon from '@mui/icons-material/PreviewRounded';
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+import {getResumeAllData} from '../../services/resumemaker-services'
 
 const token = localStorage.getItem("token")
 
-const axiosInstance = axios.create({
-  baseURL: API_URL,
+const config = {
   headers: {
     'Authorization': `Bearer ${token}`,
     'Content-Type': 'application/json'
   }
-});
+};
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -64,8 +63,8 @@ export default function CustomizedTables() {
 
 useEffect(() =>  {
   async function fetchdata() {
-  const res = await axiosInstance.get('/getallresume');
-  setData(res.data)
+  const res = await getResumeAllData(config);
+  setData(res)
   }
   fetchdata()
   console.log("Data received: ",data);
@@ -95,8 +94,8 @@ useEffect(() =>  {
               <StyledTableCell >{row.personalDetails.email}</StyledTableCell>
               <StyledTableCell >{row.personalDetails.designation}</StyledTableCell>
               <StyledTableCell ><Link>{row.id}</Link></StyledTableCell>
-              <StyledTableCell ><Link>View</Link></StyledTableCell>
-              <StyledTableCell ><Link>Delete</Link></StyledTableCell>
+              <StyledTableCell ><Link><PreviewRoundedIcon /></Link></StyledTableCell>
+              <StyledTableCell ><Link><DeleteRoundedIcon/></Link></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

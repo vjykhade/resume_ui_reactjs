@@ -6,6 +6,9 @@ import { border } from '@mui/system';
 
 export const WorkExperienceTemplate = () => {
 
+    const handleCompany = (event) => {
+        console.log(event.target.value)
+    }
     return <>
     <div className='subContainer' style={{marginBottom: "20px"}}>
         <Grid container spacing={2} >

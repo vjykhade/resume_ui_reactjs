@@ -26,7 +26,7 @@ function Projects() {
                 <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end', gap: "15px" ,  marginRight: "5px" }}>
                 <button style={{width: "50px", height: "50px", backgroundColor: "red", color: "white", border: "none",fontSize:"25px", fontWeight:"bold"}} onClick={RemoveProject}>X</button>
                 </Grid>
-             {  project} 
+             {project} 
              </>
               
             })}
